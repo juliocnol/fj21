@@ -56,6 +56,7 @@ public class ContatoDao {
 			ResultSet rs = stmt.executeQuery();
 			Contato contato = new Contato();
 			while(rs.next()) {
+				contato.setId(rs.getLong("id"));
 				contato.setNome(rs.getString("nome"));
 				contato.setEmail(rs.getString("email"));
 				contato.setEndereco(rs.getString("endereco"));

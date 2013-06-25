@@ -30,8 +30,8 @@
 		<fmt:formatDate value="${row.dataNascimento.toDate()}" pattern="dd/MM/yyyy"/>
 	</display:column>
 	<display:column>
-		<!-- <a href="alteraContatoServlet?id=${row.id}">Altera</a> -->
-		<a href="altera-contato.jsp?id=${row.id}">Altera</a>
+		<a href="alteraContatoServlet?id=${row.id}">Altera</a>
+		<!--<a href="altera-contato.jsp?id=${row.id}">Altera</a>-->
 	</display:column>
 	<display:column>
 		<a href="remove-contato.jsp?id=${row.id}">Remove</a>

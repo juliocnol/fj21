@@ -10,15 +10,15 @@ Formulário para alteração de contatos:<br/>
 <jsp:useBean id="dao" class="br.com.caelum.agenda.dao.ContatoDao"/>
 <form action="mvc" method="POST">
 Id:
-<input type="text" name="id"/><br/>
+<input type="text" name="id" value="${contato.id}"/><br/>
 Nome:
-<input type="text" name="nome"/><br/>
+<input type="text" name="nome" value="${contato.nome}"/><br/>
 E-mail:
-<input type="text" name="email"/><br/>
+<input type="text" name="email" value="${contato.email}"/><br/>
 Endereço:
-<input type="text" name="endereco"/><br/>
+<input type="text" name="endereco" value="${contato.endereco}"/><br/>
 Data de Nascimento:
-<t:campoData id="dataNascimento"></t:campoData>
+<t:campoData id="dataNascimento" value="${contato.dataNascimento}"></t:campoData>
 <input type="hidden" name="logica" value="AlteraContatoLogic"/>
 <input type="submit" value="Enviar"/>
 </form>

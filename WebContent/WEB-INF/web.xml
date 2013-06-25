@@ -9,6 +9,14 @@
     <servlet-name>HoraAtual</servlet-name>
     <url-pattern>/horaatual</url-pattern>
   </servlet-mapping>
+  <filter>
+      <filter-name>CronometroFilter</filter-name>
+      <filter-class>br.com.patrickvillela.mvc.filter.CronometroFilter</filter-class>
+  </filter>
+  <filter-mapping>
+      <filter-name>CronometroFilter</filter-name>
+      <url-pattern>/*</url-pattern>
+  </filter-mapping>
   <welcome-file-list>
     <welcome-file>listaContatos.jsp</welcome-file>
   </welcome-file-list>

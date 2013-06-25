@@ -3,6 +3,7 @@ package br.com.patrickvillela.mvc.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,7 +25,9 @@ public class AlteraContatoServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ContatoDao dao = new ContatoDao();
 		Contato contato = dao.getContato(Long.parseLong(request.getParameter("id")));
-		
+		request.setAttribute("contato", contato);
+		RequestDispatcher rd = request.getRequestDispatcher("/altera-contato.jsp");
+		rd.forward(request, response);
 	}
 
 }
