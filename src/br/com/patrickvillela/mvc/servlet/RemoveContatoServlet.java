@@ -17,8 +17,8 @@ import br.com.caelum.agenda.modelo.Contato;
 /**
  * Servlet implementation class AlteraContatoServlet
  */
-@WebServlet("/alteraContatoServlet")
-public class AlteraContatoServlet extends HttpServlet {
+@WebServlet("/removeContatoServlet")
+public class RemoveContatoServlet extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
@@ -28,7 +28,7 @@ public class AlteraContatoServlet extends HttpServlet {
 		ContatoDao dao = new ContatoDao(connection);
 		Contato contato = dao.getContato(Long.parseLong(request.getParameter("id")));
 		request.setAttribute("contato", contato);
-		RequestDispatcher rd = request.getRequestDispatcher("/altera-contato.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/remove-contato.jsp");
 		rd.forward(request, response);
 	}
 

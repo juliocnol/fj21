@@ -18,6 +18,9 @@ public class ControllerServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String parametro = request.getParameter("logica");
+		if(parametro == null) {
+			parametro = "ListaContatoLogic";
+		}
 		String nomeDaClasse = "br.com.patrickvillela.mvc.logica." + parametro;
 		
 		try {

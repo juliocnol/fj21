@@ -2,6 +2,7 @@ package br.com.patrickvillela;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -43,7 +44,8 @@ public class AdicionaContatoServlet extends HttpServlet {
 		DateTimeFormatter dtf = DateTimeFormat.forPattern("dd/MM/yyyy");
 		DateTime date = dtf.parseDateTime(dataNascimento);
 		contato.setDataNascimento(date);
-		ContatoDao contatoDao = new ContatoDao();
+		Connection connection = (Connection) request.getAttribute("connection");
+		ContatoDao contatoDao = new ContatoDao(connection);
 		contatoDao.adiciona(contato);
 		response.sendRedirect(request.getContextPath()+ "/listaContatos.jsp");
 	}

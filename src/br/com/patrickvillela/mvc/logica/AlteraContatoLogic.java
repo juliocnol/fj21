@@ -1,5 +1,6 @@
 package br.com.patrickvillela.mvc.logica;
 
+import java.sql.Connection;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -33,11 +34,12 @@ public class AlteraContatoLogic implements Logica {
 		DateTimeFormatter dtf = DateTimeFormat.forPattern("dd/MM/yyyy");
 		DateTime date = dtf.parseDateTime(dataEmTexto);
 		contato.setDataNascimento(date);
-		
-		ContatoDao dao = new ContatoDao();
+
+		Connection connection = (Connection) req.getAttribute("connection");
+		ContatoDao dao = new ContatoDao(connection);
 		dao.atualiza(contato);
 		
 		System.out.println("Alterando contato..." + contato.getNome());
-		return "/listaContatos.jsp";
+		return "/listaContatoServlet";
 	}
 }
