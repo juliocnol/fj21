@@ -4,7 +4,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,28 +14,34 @@
 <body>
 <c:import url="cabecalho.jsp"/>
 <a href='<c:url value="adiciona-contato.jsp"></c:url>'>Adicionar</a>
+<table>
+<tr bgcolor="#448822">
+<td>Nome</td>
+<td>Email</td>
+<td>Endereço</td>
+<td>Nascimento</td>
+</tr>
 <jsp:useBean id="dao" class="br.com.caelum.agenda.dao.ContatoDao"/>
-<display:table id="row" name="${dao.lista}" class="dttable">
-	<display:column sortable="true" title="Nome">
-		<c:out value="${row.nome}"/>
-	</display:column>
-	<display:column sortable="true" title="Email">
-		<a href="mailto:${row.email}">${row.email}</a>
-	</display:column>
-	<display:column sortable="true" title="Endereco">
-		<c:out value="${row.endereco}"/>
-	</display:column>
-	<display:column sortable="true" title="Data de Nascimento">
-		<fmt:formatDate value="${row.dataNascimento.toDate()}" pattern="dd/MM/yyyy"/>
-	</display:column>
-	<display:column>
-		<a href="alteraContatoServlet?id=${row.id}">Altera</a>
-		<!--<a href="altera-contato.jsp?id=${row.id}">Altera</a>-->
-	</display:column>
-	<display:column>
-		<a href="remove-contato.jsp?id=${row.id}">Remove</a>
-	</display:column>
-</display:table>
+<c:forEach items="${dao.lista}" var="contato" varStatus="id">
+<tr bgcolor="#${id.count%2==0?'aaee88':'ffffff'}">
+<td>${contato.nome}</td>
+<td>
+<c:choose>
+	<c:when test="${not empty contato.email }">
+		<a href="mailto:${contato.email}">${contato.email}</a>
+	</c:when>
+	<c:otherwise>
+		EMAIL NÃO PREENCHIDO
+	</c:otherwise>
+</c:choose>
+</td>
+<td>${contato.endereco}</td>
+<td><fmt:formatDate value="${contato.dataNascimento.toDate()}" pattern="dd/MM/yyyy"/></td>
+<td><a href="alteraContatoServlet?id=${contato.id}">Altera</a></td>
+<td><a href="remove-contato.jsp?id=${contato.id}">Remove</a></td>
+</tr>
+</c:forEach>
+</table>
 <c:import url="rodape.jsp"/>
 </body>
 </html>
