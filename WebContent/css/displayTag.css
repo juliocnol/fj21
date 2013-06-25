@@ -1,0 +1,10 @@
+.dttable thead tr {
+  background-color: #482;
+}
+.dttable tr.even {
+  background-color: #ae8;
+}
+.dttable thead a {
+  text-decoration: none;
+  color: #000;
+}

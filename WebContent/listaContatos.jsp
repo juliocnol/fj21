@@ -9,51 +9,34 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="css/displayTag.css" rel="stylesheet"/>
 <title>Insert title here</title>
 </head>
 <body>
 <c:import url="cabecalho.jsp"/>
 <a href='<c:url value="adiciona-contato.jsp"></c:url>'>Adicionar</a>
-<table>
-<tr bgcolor="#448822">
-<td>Nome</td>
-<td>Email</td>
-<td>Endereço</td>
-<td>Nascimento</td>
-</tr>
 <jsp:useBean id="dao" class="br.com.caelum.agenda.dao.ContatoDao"/>
-<c:forEach items="${dao.lista}" var="contato" varStatus="id">
-<tr bgcolor="#${id.count%2==0?'aaee88':'ffffff'}">
-<td>${contato.nome}</td>
-<td>
-<c:choose>
-	<c:when test="${not empty contato.email }">
-		<a href="mailto:${contato.email}">${contato.email}</a>
-	</c:when>
-	<c:otherwise>
-		EMAIL NÃO PREENCHIDO
-	</c:otherwise>
-</c:choose>
-</td>
-<td>${contato.endereco}</td>
-<td><fmt:formatDate value="${contato.dataNascimento.toDate()}" pattern="dd/MM/yyyy"/></td>
-</tr>
-</c:forEach>
-</table>
-<c:import url="rodape.jsp"/>
-<display:table id="row" name="${dao.lista}">
+<display:table id="row" name="${dao.lista}" class="dttable">
 	<display:column sortable="true" title="Nome">
 		<c:out value="${row.nome}"/>
 	</display:column>
 	<display:column sortable="true" title="Email">
-		<c:out value="${row.email}"/>
+		<a href="mailto:${row.email}">${row.email}</a>
 	</display:column>
-	<display:column>
+	<display:column sortable="true" title="Endereco">
 		<c:out value="${row.endereco}"/>
 	</display:column>
-	<display:column>
+	<display:column sortable="true" title="Data de Nascimento">
 		<fmt:formatDate value="${row.dataNascimento.toDate()}" pattern="dd/MM/yyyy"/>
 	</display:column>
+	<display:column>
+		<!-- <a href="alteraContatoServlet?id=${row.id}">Altera</a> -->
+		<a href="altera-contato.jsp?id=${row.id}">Altera</a>
+	</display:column>
+	<display:column>
+		<a href="remove-contato.jsp?id=${row.id}">Remove</a>
+	</display:column>
 </display:table>
+<c:import url="rodape.jsp"/>
 </body>
 </html>

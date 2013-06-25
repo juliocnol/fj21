@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.management.RuntimeErrorException;
+
 import org.joda.time.DateTime;
 
 import br.com.caelum.agenda.ConnectionFactory;
@@ -44,6 +46,29 @@ public class ContatoDao {
 			stmt.close();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
+		}
+	}
+	
+	public Contato getContato(Long id) {
+		try {
+			PreparedStatement stmt = this.connection.prepareStatement("select * from contatos where id=?");
+			stmt.setLong(1, id);
+			ResultSet rs = stmt.executeQuery();
+			Contato contato = new Contato();
+			while(rs.next()) {
+				contato.setNome(rs.getString("nome"));
+				contato.setEmail(rs.getString("email"));
+				contato.setEndereco(rs.getString("endereco"));
+				Calendar data = Calendar.getInstance();
+				data.setTime(rs.getDate("dataNascimento"));
+				contato.setDataNascimento(new DateTime(data));
+			}
+			rs.close();
+			stmt.close();
+			return contato;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException();
 		}
 	}
 
