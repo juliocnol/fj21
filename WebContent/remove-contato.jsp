@@ -9,7 +9,7 @@
 Formulário para alteração de contatos:<br/>
 <form action="mvc" method="POST">
 Id:
-<input type="text" name="id"/><br/>
+<input type="text" name="id" value="${contato.id}"/><br/>
 <input type="hidden" name="logica" value="RemoveContatoLogic"/>
 <input type="submit" value="Enviar"/>
 </form>

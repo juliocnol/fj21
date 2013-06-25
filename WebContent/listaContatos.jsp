@@ -21,8 +21,7 @@
 <td>Endereço</td>
 <td>Nascimento</td>
 </tr>
-<jsp:useBean id="dao" class="br.com.caelum.agenda.dao.ContatoDao"/>
-<c:forEach items="${dao.lista}" var="contato" varStatus="id">
+<c:forEach items="${lista}" var="contato" varStatus="id">
 <tr bgcolor="#${id.count%2==0?'aaee88':'ffffff'}">
 <td>${contato.nome}</td>
 <td>
@@ -38,7 +37,7 @@
 <td>${contato.endereco}</td>
 <td><fmt:formatDate value="${contato.dataNascimento.toDate()}" pattern="dd/MM/yyyy"/></td>
 <td><a href="alteraContatoServlet?id=${contato.id}">Altera</a></td>
-<td><a href="remove-contato.jsp?id=${contato.id}">Remove</a></td>
+<td><a href="removeContatoServlet?id=${contato.id}">Remove</a></td>
 </tr>
 </c:forEach>
 </table>

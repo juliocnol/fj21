@@ -10,15 +10,17 @@
     <url-pattern>/horaatual</url-pattern>
   </servlet-mapping>
   <filter>
-      <filter-name>CronometroFilter</filter-name>
-      <filter-class>br.com.patrickvillela.mvc.filter.CronometroFilter</filter-class>
+    <filter-name>ConnectionFilter</filter-name>
+    <filter-class>br.com.patrickvillela.mvc.filter.ConnectionFilter</filter-class>
   </filter>
   <filter-mapping>
-      <filter-name>CronometroFilter</filter-name>
-      <url-pattern>/*</url-pattern>
+    <filter-name>ConnectionFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher>
   </filter-mapping>
   <welcome-file-list>
-    <welcome-file>listaContatos.jsp</welcome-file>
+    <welcome-file>mvc</welcome-file>
   </welcome-file-list>
   <error-page>
     <exception-type>java.lang.Exception</exception-type>

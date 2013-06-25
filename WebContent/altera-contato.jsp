@@ -7,7 +7,6 @@
 <script src="js/jquery.js"></script>
 <script src="js/jquery-ui.js"></script>
 Formulário para alteração de contatos:<br/>
-<jsp:useBean id="dao" class="br.com.caelum.agenda.dao.ContatoDao"/>
 <form action="mvc" method="POST">
 Id:
 <input type="text" name="id" value="${contato.id}"/><br/>
